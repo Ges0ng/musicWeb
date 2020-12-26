@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nmsl.dao.SingerDAO">
+
+    <!--<cache type="com.nmsl.cache.RedisCache"/>-->
+
+    <sql id="Base_Column_List">
+        id,name,sex,pic,birth,location,introduction
+    </sql>
+    
+    <insert id="insert" parameterType="com.nmsl.domain.Singer" useGeneratedKeys="true" keyProperty="id">
+        insert into singer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="sex != null" >
+                sex,
+            </if>
+            <if test="pic != null" >
+                pic,
+            </if>
+            <if test="birth != null" >
+                birth,
+            </if>
+            <if test="location != null" >
+                location,
+            </if>
+            <if test="introduction != null" >
+                introduction,
+            </if>
+        </trim>
+        <trim prefix=" values(" suffix=")" suffixOverrides=",">
+            <if test="id != null" >
+                #{id},
+            </if>
+            <if test="name != null" >
+                #{name},
+            </if>
+            <if test="sex != null" >
+                #{sex},
+            </if>
+            <if test="pic != null" >
+                #{pic},
+            </if>
+            <if test="birth != null" >
+                #{birth},
+            </if>
+            <if test="location != null" >
+                #{location},
+            </if>
+            <if test="introduction != null" >
+                #{introduction},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="update" parameterType="com.nmsl.domain.Singer">
+        update singer
+        <set>
+            <if test="name != null" >
+                name = #{name},
+            </if>
+            <if test="sex != null" >
+                sex = #{sex},
+            </if>
+            <if test="pic != null" >
+                pic = #{pic},
+            </if>
+            <if test="birth != null" >
+                birth = #{birth},
+            </if>
+            <if test="location != null" >
+                location = #{location},
+            </if>
+            <if test="introduction != null" >
+                introduction = #{introduction},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    
+    <delete id="delete">
+        delete
+        from singer
+        where id = #{id};
+    </delete>
+
+    <!--根据主键查询整个对象-->
+    <select id="selectById" resultType="com.nmsl.domain.Singer">
+        select
+        id,name,sex,pic,birth,location,introduction
+        from singer
+        where id=#{id}
+    </select>
+    
+    <select id="selectAllSinger" resultType="com.nmsl.domain.Singer">
+        select
+        id,name,sex,pic,birth,location,introduction
+        from singer
+    </select>
+
+    <select id="singerOfName" resultType="com.nmsl.domain.Singer">
+        select
+        id,name,sex,pic,birth,location,introduction
+        from singer
+        where name like #{name}
+    </select>
+
+    <select id="singerOfSex" resultType="com.nmsl.domain.Singer">
+        select
+        id,name,sex,pic,birth,location,introduction
+        from singer
+        where sex=#{sex}
+    </select>
+</mapper>
+    
