@@ -1,0 +1,118 @@
+@import "var.scss";
+@import "global.scss";
+
+.play-bar {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  
+  transition: all 0.5s;
+  @include box-shadow($box-shadow);
+
+  .item-up {
+    position: absolute;
+    bottom: $play-bar-height + 10px;
+    left: 20px;
+    cursor: pointer;
+  }
+
+  .kongjian {
+    @include layout(center, center);
+    bottom: 0;
+    height: $play-bar-height;
+    width: 100%;
+    min-width: 1000px;
+    background-color: #CCCCCC;
+
+    .item {
+      position: relative;
+      width: 90px;
+      height: 45px;
+      line-height: 60px;
+      text-align: center;
+      cursor: pointer;
+      .icon.active {
+        color: red !important;
+      }
+      .volume {
+        position: absolute;
+        display: none;
+        height: 100px;
+        top: -($play-bar-height + 50px);
+        right: 22px;
+      }
+      .show-volume {
+        display: block;
+      }
+    }
+
+    .item-img {
+      width: $play-bar-height;
+      height: $play-bar-height;
+      img {
+        border-radius: 15%;
+        width: 100%;
+        @include box-shadow(0 0 10px 2px rgba(0, 0, 0, 0.2));        
+      }
+    }
+
+    .playing-speed {
+      // 进度条
+      height: 50px;
+      width: 1000px;
+      @include layout(center, center);
+
+      .current-time,
+      .left-time {
+        width: 75px;
+        text-align: center;
+        font-size: 18px;
+        color: $color-black;
+        font-weight: 500;
+        top: -10px;
+      }
+
+      .progress-box {
+        flex: 1;
+        .item-song-title {
+          @include layout(space-between);
+          height: 23px;
+          line-height: 10px;
+        }
+        .progress {
+          width: 100%;
+          background: #FFFFFF;
+          height: 6px;
+          .bg {
+            height: 100%;
+            .cur-progress {
+              height: 100%;
+              background: #FF9999;
+            }
+          }
+          .idot {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            border-radius: 50%;
+            background-color: #FFCCCC;
+            top: -11px;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+}
+
+.turn {
+  transform: rotate(180deg);
+}
+
+.show {
+  bottom: -($play-bar-height);
+}
+
+.icon {
+  @include icon(1.3em, $color-black);
+}

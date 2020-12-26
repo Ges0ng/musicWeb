@@ -1,0 +1,17 @@
+@import "var.scss";
+@import "global.scss";
+
+.login-logo {
+  background-color: #DCDFE6;
+  
+  border-radius: 0%;
+  height: 100vh;
+  width: 50vw;
+  min-width: 650px;
+  overflow: hidden;
+  @include layout(center, center);
+  .icon {
+    @include icon(7.0em, #FF9999);
+    transform: rotate(-30deg);
+  }
+}
